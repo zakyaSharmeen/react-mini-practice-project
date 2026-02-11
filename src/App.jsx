@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       {/* <Show /> */}
-      <Change />
+      {/* <Change /> */}
       <Practice />
     </div>
   );
