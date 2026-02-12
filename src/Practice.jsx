@@ -1,14 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 function Practice() {
-  const [num, setNum] = useState(0);
-
   return (
     <div>
-      <h1>Counter app</h1>
-      <button onClick={() => setNum(num + 1)}>+</button>
-      <h2>{num}</h2>
-      <button onClick={() => setNum(num - 1)}>-</button>
+      <h1>always do the pratcice</h1>
     </div>
   );
 }
