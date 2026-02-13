@@ -26,3 +26,7 @@
 // 👀 useSelector = waiter watching for updates
 
 // 🍽️ UI re-renders = food arrives at table
+
+//UI doesn’t change state directly.
+// UI dispatches actions, reducers change the store,
+// and UI reacts to store changes via useSelector.
