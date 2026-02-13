@@ -24,3 +24,10 @@
 // }
 
 // export default App;
+
+//1️⃣ Progress is invisible while it’s happening
+
+// When you’re learning Redux / React / anything technical, your brain is rewiring. That feels like confusion, not progress.
+// The “ohhh I get it” moment usually shows up days or weeks after the grind. If you stop early, you miss the payoff.
+
+// Real talk: feeling dumb = your brain is growing.
