@@ -30,3 +30,19 @@
 //UI doesn’t change state directly.
 // UI dispatches actions, reducers change the store,
 // and UI reacts to store changes via useSelector.
+
+import React, { useState } from "react";
+
+function App() {
+  const [show, setShow] = useState(false);
+
+  return (
+    <div>
+      <button onClick={() => setShow(!show)}>{show ? "hide" : "show"}</button>
+
+      {show && <h1>hii zakya its easy pizzy</h1>}
+    </div>
+  );
+}
+
+export default App;
