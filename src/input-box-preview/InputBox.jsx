@@ -31,3 +31,17 @@
 // The “ohhh I get it” moment usually shows up days or weeks after the grind. If you stop early, you miss the payoff.
 
 // Real talk: feeling dumb = your brain is growing.
+
+import React, { useState } from "react";
+
+function InputBox() {
+  const [click, setClick] = useState("click me please");
+
+  return (
+    <div>
+      <button onClick={() => setClick("clicked bro chill")}>{click}</button>
+    </div>
+  );
+}
+
+export default InputBox;
