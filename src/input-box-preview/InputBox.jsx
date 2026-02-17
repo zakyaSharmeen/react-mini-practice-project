@@ -307,3 +307,6 @@
 // State management	Store user input
 // Validation	Check correctness
 // Submission	Send data to backend (Axios)
+
+// User types → React state updates → Validate → User clicks submit
+// → Final validation → Axios sends request → Server responds → UI updates
