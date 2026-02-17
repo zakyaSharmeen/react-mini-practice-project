@@ -32,19 +32,19 @@
 
 // Real talk: feeling dumb = your brain is growing.
 
-import React, { useState } from "react";
+// import React, { useState } from "react";
 
-function InputBox() {
-  const [click, setClick] = useState("click me please");
+// function InputBox() {
+//   const [click, setClick] = useState("click me please");
 
-  return (
-    <div>
-      <button onClick={() => setClick("clicked bro chill")}>{click}</button>
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <button onClick={() => setClick("clicked bro chill")}>{click}</button>
+//     </div>
+//   );
+// }
 
-export default InputBox;
+// export default InputBox;
 
 ///////
 // import React, { useState } from "react";
@@ -186,3 +186,119 @@ export default InputBox;
 //     "Content-Type": "application/json",
 //   },
 // });
+
+import React, { useState } from "react";
+
+export default function SimpleForm() {
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+
+  const validate = (name, value) => {
+    let error = "";
+
+    if (!value.trim()) {
+      error = `${name} is required`;
+    } else {
+      if (name === "email") {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value)) {
+          error = "Invalid email format";
+        }
+      }
+
+      if (name === "password") {
+        if (value.length < 6) {
+          error = "Password must be at least 6 characters";
+        }
+      }
+    }
+
+    return error;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    setErrors((prev) => ({
+      ...prev,
+      [name]: validate(name, value),
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newErrors = {};
+    Object.keys(values).forEach((key) => {
+      const error = validate(key, values[key]);
+      if (error) newErrors[key] = error;
+    });
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+      setSubmitted(true);
+      console.log("Form data:", values);
+    }
+  };
+
+  return (
+    <div
+      style={{ maxWidth: 400, margin: "40px auto", fontFamily: "sans-serif" }}
+    >
+      <h2>Register</h2>
+
+      <form onSubmit={handleSubmit} noValidate>
+        <div>
+          <label>Name</label>
+          <input
+            type="text"
+            name="name"
+            value={values.name}
+            onChange={handleChange}
+          />
+          {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
+        </div>
+
+        <div>
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={values.email}
+            onChange={handleChange}
+          />
+          {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
+        </div>
+
+        <div>
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            value={values.password}
+            onChange={handleChange}
+          />
+          {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+
+      {submitted && (
+        <p style={{ color: "green" }}>Form submitted successfully 🎉</p>
+      )}
+    </div>
+  );
+}
